@@ -39,9 +39,10 @@ npm run dev
   }
   ]
   ```
+
   
 
-### <mark>GET</mark> /posts/:id
+### `GET` /posts/:id
 - 특정 게시글 조회
 - Response:
   ```
@@ -60,9 +61,10 @@ npm run dev
     "likes": 3
   }
   ```
+
   
 
-### <mark>POST</mark> /posts
+### `POST` /posts
 - 새로운 게시글 작성
 - Request:
   ```
@@ -73,7 +75,8 @@ npm run dev
   ```
   
 
-### <mark>PATCH</mark> /posts/:id
+
+### `PATCH` /posts/:id
 - 게시글 수정
 - Request:
   ```
@@ -82,14 +85,16 @@ npm run dev
       "content": "수정 내용"
   }
   ```
+
   
 
-### <mark>DELETE</mark> /posts/:id
+### `DELETE` /posts/:id
 - 게시글 삭제
 - Response: HTTP 204 No Content
 
 
-### <mark>PATCH</mark> /posts/:id/like
+
+### `PATCH` /posts/:id/like
 - 게시글에 좋아요 추가/취소
 - Request:
   ```
@@ -103,9 +108,10 @@ npm run dev
     "likes": 1
   }
   ```
+
   
 
-### <mark>PATCH</mark> /posts/:id/comment
+### `PATCH` /posts/:id/comment
 - 게시글에 댓글 추가
 - Request: 
   ```
