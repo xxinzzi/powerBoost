@@ -1,7 +1,7 @@
 # powerBoost Study
 ## 이화여대 파워부스트 스터디
 
-## 사용법
+### 사용법
 ```
 npm install
 npm run dev
@@ -9,7 +9,7 @@ npm run dev
 
 ## API 명세서
 
-### <mark>GET</mark> /posts
+### `GET` /posts
 - 전체 게시글 조회
 - Response:
   ```
