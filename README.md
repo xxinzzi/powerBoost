@@ -9,7 +9,7 @@ npm run dev
 
 ## API 명세서
 
-### GET /posts
+### <mark>GET</mark> /posts
 - 전체 게시글 조회
 - Response:
   ```
@@ -39,8 +39,9 @@ npm run dev
   }
   ]
   ```
+  
 
-### GET /posts/:id
+### <mark>GET</mark> /posts/:id
 - 특정 게시글 조회
 - Response:
   ```
@@ -59,8 +60,9 @@ npm run dev
     "likes": 3
   }
   ```
+  
 
-### POST /posts
+### <mark>POST</mark> /posts
 - 새로운 게시글 작성
 - Request:
   ```
@@ -71,7 +73,7 @@ npm run dev
   ```
   
 
-### PATCH /posts/:id
+### <mark>PATCH</mark> /posts/:id
 - 게시글 수정
 - Request:
   ```
@@ -80,12 +82,14 @@ npm run dev
       "content": "수정 내용"
   }
   ```
+  
 
-### DELETE/posts/:id
+### <mark>DELETE</mark> /posts/:id
 - 게시글 삭제
 - Response: HTTP 204 No Content
 
-### PATCH/posts/:id/like
+
+### <mark>PATCH</mark> /posts/:id/like
 - 게시글에 좋아요 추가/취소
 - Request:
   ```
@@ -101,7 +105,7 @@ npm run dev
   ```
   
 
-### PATCH/posts/:id/comment
+### <mark>PATCH</mark> /posts/:id/comment
 - 게시글에 댓글 추가
 - Request: 
   ```
