@@ -240,7 +240,7 @@ app.delete(
 
 /*********** likes ***********/
 
-// 좋아요 달기/해제
+//좋아요 달기/해제
 app.patch(
   "/posts/:postId/like",
   authenticateToken,
@@ -280,7 +280,7 @@ app.post(
   })
 );
 
-// 댓글 수정
+//댓글 수정
 app.patch(
   "/comments/:id",
   authenticateToken,

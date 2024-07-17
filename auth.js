@@ -52,7 +52,7 @@ export async function authenticateToken(req, res, next) {
       return res.sendStatus(401);
     }
 
-    console.log("인증 성공:", req.user);
+    console.log("인증 성공:", req.user.id);
     next();
   });
 }
