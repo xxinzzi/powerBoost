@@ -1,0 +1,56 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String    @id @default(uuid())
+    password  String
+    email     String    @unique
+    firstName String
+    lastName  String
+    nickname  String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    posts     Post[]
+    likes     Like[]
+    comments  Comment[]
+}
+
+model Post {
+    id        String    @id @default(uuid())
+    user      User?     @relation(fields: [userId], references: [id])
+    userId    String?
+    title     String
+    content   String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    comments  Comment[]
+    likes     Like[]
+    status    String    @default("ACTIVE") // 상태 필드 추가 (예: ACTIVE, DELETED 등)
+}
+
+model Like {
+    id        String   @id @default(uuid()) // ID 필드 추가
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String
+    post      Post     @relation(fields: [postId], references: [id])
+    postId    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Comment {
+    id        String   @id @default(uuid()) // ID 필드 추가
+    user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+    userId    String?
+    post      Post     @relation(fields: [postId], references: [id])
+    postId    String
+    content   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
