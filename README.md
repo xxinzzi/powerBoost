@@ -35,12 +35,19 @@ npm run dev
       "email": "mintlima03@naver.com"
   }
   ```
-- Response: 토큰 반환
-  ```
-  {
-  "token": "eyJhbGciOiJI~~~~~"
-  }
-  ```
+- Response:
+  - 로그인 성공 시: 토큰 반환
+    ```
+    {
+      "token": "eyJhbGciOiJI~~~~~"
+    }
+    ```
+  - 로그인 실패 시:
+    ```
+    {
+      "message": "Invalid credentials"
+    }
+    ```
   
 ### `GET`/logout
 - 로그아웃
@@ -48,6 +55,7 @@ npm run dev
 
 ### `PATCH`/users/:id
 - 유저 정보 수정
+- 사용자 인증 필요
 - Request:
   ```
   Content-Type: application/json
@@ -111,6 +119,7 @@ npm run dev
 
 ### `POST`/posts
 - 새로운 게시글 작성
+- 사용자 인증 필요
 - Request:
   ```
   Content-Type: application/json
@@ -124,6 +133,7 @@ npm run dev
 
 ### `PATCH`/posts/:id
 - 게시글 수정
+- 사용자 인증 필요
 - Request:
   ```
   Content-Type: application/json
@@ -137,6 +147,7 @@ npm run dev
 
 ### `DELETE`/posts/:id
 - 게시글 삭제
+- 사용자 인증 필요
 - Request:
   ```
   Authorization: Bearer YOUR_TOKEN_HERE
@@ -144,6 +155,7 @@ npm run dev
 
 ### `PATCH`/posts/:id/like
 - 게시글에 좋아요 추가/취소
+- 사용자 인증 필요
 - Request:
   ```
   Authorization: Bearer YOUR_TOKEN_HERE
@@ -165,6 +177,7 @@ npm run dev
   
 ### `POST`/posts/:id/comment
 - 게시글에 댓글 추가
+- 사용자 인증 필요
 - Request: 
   ```
   Content-Type: application/json
@@ -177,6 +190,7 @@ npm run dev
   
 ### `PATCH`/comments/:id
 - 댓글 수정
+- 사용자 인증 필요
 - Request: 
   ```
   Content-Type: application/json
@@ -189,7 +203,10 @@ npm run dev
 
 ### `DELETE`/comments/:id
 - 댓글 삭제
+- 사용자 인증 필요
 - Request: 
   ```
   Authorization: Bearer YOUR_TOKEN_HERE
   ```
+
+
