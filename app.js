@@ -115,7 +115,6 @@ app.post(
     assert(req.body, CreateUser);
     const { firstName, lastName, nickname, password, email } = req.body;
     const hashedPassword = await hashPassword(password);
-    console.log(`해시된 비밀번호: ${hashedPassword}`);
     const user = await prisma.user.create({
       data: { firstName, lastName, nickname, password: hashedPassword, email },
     });
@@ -173,7 +172,7 @@ app.get(
   })
 );
 
-//특정 게시글 조회 (댓글, 좋아요 개수 함께 표시)
+//특정 게시글 조회 (댓글, 좋아요 함께 표시)
 app.get(
   "/posts/:id",
   asyncHandler(async (req, res) => {
@@ -181,8 +180,19 @@ app.get(
     const post = await prisma.post.findUnique({
       where: { id },
       include: {
-        comments: true,
-        likes: true,
+        comments: {
+          select: {
+            id: true,
+            userId: true,
+            content: true,
+            updatedAt: true,
+          },
+        },
+        likes: {
+          select: {
+            userId: true,
+          },
+        },
       },
     });
     res.send(post);

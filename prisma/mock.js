@@ -23,14 +23,12 @@ export const POSTS = [
     userId: "b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e",
     title: "First Post",
     content: "This is the content of the first post.",
-    status: "ACTIVE",
   },
   {
     id: "d2ff3048-83bc-425a-8ad3-d6d9af1c7c6d",
     userId: "6c3a18b0-11c5-4d97-9019-9ebe3c4d1317",
     title: "Second Post",
     content: "This is the content of the second post.",
-    status: "ACTIVE",
   },
 ];
 
