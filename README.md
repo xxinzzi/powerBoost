@@ -209,4 +209,48 @@ npm run dev
   Authorization: Bearer YOUR_TOKEN_HERE
   ```
 
+##📝
+###2주차
+1. **사용자 생성 (회원가입)**
+  - `bcrypt` 라이브러리를 사용하여 비밀번호를 해싱하여 저장
+    ```javascript
+    export async function hashPassword(password) {
+      return bcrypt.hash(password, 10);
+    }
+    ```
+2. **사용자 로그인**
+  - 요청 바디: `email`과 `password`를 포함
+  - 데이터베이스 조회: 주어진 이메일로 사용자를 조회
+  - 비밀번호 검증: 입력된 비밀번호가 저장된 해시와 일치하는지 확인
+    ```javascript
+    export async function comparePassword(password, hash) {
+      return bcrypt.compare(password, hash);
+    }
+    ```
+3. **JWT 토큰 생성**
+  - 비밀번호가 일치하면 JWT 토큰을 생성하여 클라이언트에 반환
+    ```javascript
+    export function generateToken(user) {
+      return jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+        expiresIn: "1h", //토큰은 1시간 동안 유효
+      });
+    }
+    ```
+4. **사용자 인증이 필요한 경로 보호**
+  - JWT 토큰 인증: `authenticateToken` 미들웨어를 통해 요청이 인증된 사용자로부터 온 것인지 확인
+  - 사용자 ID 검증: 요청된 사용자 ID와 인증된 사용자 ID가 일치하는지 확인
+    ```javascript
+    export async function authenticateToken(req, res, next) {
+      const token = req.headers["authorization"]; //요청 헤더에서 JWT 토큰을 읽어 검증
+      if (!token) return res.sendStatus(401);
+
+      jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+        if (err) return res.sendStatus(403); //토큰이 유효하지 않으면 403 상태 코드 반환
+
+        req.user = await prisma.user.findUnique({ where: { id: decoded.userId } });
+        next(); //유효한 토큰이면 사용자 정보를 요청 객체에 추가하고 다음 미들웨어로 넘어감
+      });
+    }
+    ```
+**새롭게 알게 된 점**: bcrypt를 사용하여 비밀번호 보안을 강화할 수 있다
 
